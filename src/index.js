@@ -4,7 +4,7 @@ app.use(express())
 app.use(express.json())
 
 app.post('/', (req, res) => {
-    res.json('HELLOW WORLD')
+  res.json('HELLOW WORLD')
 })
 
 app.listen(4488)
