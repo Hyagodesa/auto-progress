@@ -1,0 +1,25 @@
+{
+  "name": "autoprogress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hyagodesa/auto-progress.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hyagodesa/auto-progress/issues"
+  },
+  "homepage": "https://github.com/Hyagodesa/auto-progress#readme",
+  "dependencies": {
+    "eslint": "^8.23.0",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19"
+  }
+}
