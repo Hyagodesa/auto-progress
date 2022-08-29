@@ -1,0 +1,5 @@
+
+const validName = (name) => {
+  if (name.length <= 3) return ('nome invalido')
+}
+module.exports = validName()

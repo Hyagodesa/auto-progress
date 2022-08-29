@@ -1,18 +1,13 @@
 const { Router } = require('express')
+const validName = require('../../shared/utils/validName.js')
 const userRouter = Router()
-
-const user = []
-
-// const validName = (name) => {
-//   if (name.length <= 3) return ('nome invalido')
-// }
 
 userRouter.post('/user', (req, res) => {
   const { name } = req.body
-  console.log(name)
+  const validarNome = validName()
+  if (validarNome) { return res.json(404).send('insira um nome maior') }
+
+  return res.json({ newUser: name })
 })
 
-userRouter.get('/user', (req, res) => {
-  res.json(user)
-})
 module.exports = userRouter
