@@ -1,5 +1,7 @@
 
-const validName = (name) => {
-  if (name.length <= 3) return ('nome invalido')
+const isValid = (name) => {
+  if (name.length <= 3) return ('inválido')
 }
-module.exports = validName()
+const validarNome = isValid()
+
+module.exports = validarNome

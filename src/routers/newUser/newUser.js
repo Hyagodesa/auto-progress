@@ -4,10 +4,8 @@ const userRouter = Router()
 
 userRouter.post('/user', (req, res) => {
   const { name } = req.body
-  const validarNome = validName()
-  if (validarNome) { return res.json(404).send('insira um nome maior') }
-
-  return res.json({ newUser: name })
+  const validar = validName.validName(name)
+  console.log(validar)
 })
 
 module.exports = userRouter
