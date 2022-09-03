@@ -5,15 +5,16 @@ const userRouter = express.Router()
 const list = []
 userRouter.post('/user', (req, res) => {
   const { name, email, password } = req.body
-  if (name.length <= 3) return res.status(400).send('nome muito curto, insira um nome maior')
-  if (!email.includes('@') && !email.includes('.com')) return res.status(400).send('email invalido')
-  if (password.length <= 7) return res.status(400).send('insira uma senha mais forte, contendo pelo menos 8 digitos')
-  if (!name) return res.status(400).send('insira um nome')
-  if (!email) return res.status(400).send('insira um email')
-  if (!password) return res.status(400).send('insira uma senha')
+  if (!name) return res.status(400).send('Insira um nome.')
+  if (name.length <= 3) return res.status(400).send('Insira um nome maior, com pelo menos 4 caracteres.')
+  if (!email) return res.status(400).send('Insira um email.')
+  if (!email.includes('@') || !email.includes('.com')) return res.status(400).send('Email invalido.')
+  if (!password) return res.status(400).send('Insira uma senha.')
+  if (password.length <= 7) return res.status(400).send('Insira uma senha mais forte, com pelo menos 8 caracteres.')
   const usuario = list.find((user) => user.email === email)
-  if (usuario) return res.status(400).send('usuário ja foi cadastrado')
+  if (usuario) return res.status(400).send('Usuário ja foi cadastrado.')
   list.push({ name, email, password, id: idUtils.generate(), createdAt: dateUtils.now(), status: true })
-  res.status(204)
+  return res.status(204).json()
 })
+
 module.exports = userRouter
