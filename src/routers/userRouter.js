@@ -1,10 +1,13 @@
 const express = require('express')
 const idUtils = require('../shared/utils/idUtility')
 const dateUtils = require('../shared/utils/dateUtils')
+
 const userRouter = express.Router()
 const list = []
+
 userRouter.post('/user', (req, res) => {
   const { name, email, password } = req.body
+
   if (!name) return res.status(400).send('Insira um nome.')
   if (name.length <= 3) return res.status(400).send('Insira um nome maior, com pelo menos 4 caracteres.')
 
