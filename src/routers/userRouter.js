@@ -1,6 +1,6 @@
 const express = require('express')
-const idUtils = require('../../shared/utils/idUtility')
-const dateUtils = require('../../shared/utils/dateUtils')
+const idUtils = require('../shared/utils/idUtility')
+const dateUtils = require('../shared/utils/dateUtils')
 const userRouter = express.Router()
 const list = []
 userRouter.post('/user', (req, res) => {
@@ -11,8 +11,8 @@ userRouter.post('/user', (req, res) => {
   if (!email.includes('@') || !email.includes('.com')) return res.status(400).send('Email invalido.')
   if (!password) return res.status(400).send('Insira uma senha.')
   if (password.length <= 7) return res.status(400).send('Insira uma senha mais forte, com pelo menos 8 caracteres.')
-  const usuario = list.find((user) => user.email === email)
-  if (usuario) return res.status(400).send('Usuário ja foi cadastrado.')
+  const user = list.find((user) => user.email === email)
+  if (user) return res.status(400).send('Usuário ja foi cadastrado.')
   list.push({ name, email, password, id: idUtils.generate(), createdAt: dateUtils.now(), status: true })
   return res.status(204).json()
 })
