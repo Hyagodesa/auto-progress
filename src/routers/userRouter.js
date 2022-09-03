@@ -11,7 +11,7 @@ userRouter.post('/user', (req, res) => {
 
   if (!name) return res.status(400).send('Insira um nome.')
   if (!validator.minLength(name, 4)) return res.status(400).send('Insira um nome maior, com pelo menos 4 caracteres.')
-  if (!validator.maxLength(name, 30)) return res.status(400).send('Insira um nome menor, com pelo menos 30 caracteres.')
+  if (!validator.maxLength(name, 30)) return res.status(400).send('Insira um nome menor, com no maximo30 caracteres.')
 
   if (!email) return res.status(400).send('Insira um email.')
   if (!validator.IsEmail(email)) return res.status(400).send('Email inválido.')
