@@ -1,26 +1,28 @@
 const express = require('express')
+const validator = require('class-validator')
 const idUtils = require('../shared/utils/idUtility')
 const dateUtils = require('../shared/utils/dateUtils')
 
 const userRouter = express.Router()
-const list = []
+const users = []
 
 userRouter.post('/user', (req, res) => {
   const { name, email, password } = req.body
 
   if (!name) return res.status(400).send('Insira um nome.')
-  if (name.length <= 3) return res.status(400).send('Insira um nome maior, com pelo menos 4 caracteres.')
+  if (!validator.minLength(name, 4)) return res.status(400).send('Insira um nome maior, com pelo menos 4 caracteres.')
+  if (!validator.maxLength(name, 30)) return res.status(400).send('Insira um nome menor, com pelo menos 30 caracteres.')
 
   if (!email) return res.status(400).send('Insira um email.')
-  if (!email.includes('@') || !email.includes('.com')) return res.status(400).send('Email inválido.')
+  if (!validator.IsEmail(email)) return res.status(400).send('Email inválido.')
 
   if (!password) return res.status(400).send('Insira uma senha.')
-  if (password.length <= 7) return res.status(400).send('Insira uma senha mais forte, com pelo menos 8 caracteres.')
+  if (!validator.length(password, 8, 20)) return res.status(400).send('Insira uma senha entre 8 e 20 caracteres')
 
-  const user = list.find((user) => user.email === email)
+  const user = users.find((user) => user.email === email)
   if (user) return res.status(400).send('Este email já foi cadastrado.')
 
-  list.push({ name, email, password, id: idUtils.generate(), createdAt: dateUtils.now(), status: true })
+  users.push({ name, email, password, id: idUtils.generate(), createdAt: dateUtils.now(), status: true })
   return res.status(204).json()
 })
 
