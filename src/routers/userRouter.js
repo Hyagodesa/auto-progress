@@ -26,7 +26,7 @@ userRouter.post('/user', (req, res) => {
   return res.status(204).json()
 })
 
-userRouter.get('/user', (req, res) => {
+userRouter.get('/users', (req, res) => {
   const registered = users.map((user) => {
     return {
       name: user.name,
