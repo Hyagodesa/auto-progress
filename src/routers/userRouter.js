@@ -27,15 +27,15 @@ userRouter.post('/user', (req, res) => {
 })
 
 userRouter.get('/user', (req, res) => {
-  const cadastrados = users.map((users) => {
+  const registered = users.map((user) => {
     return {
-      Name: users.name,
-      Email: users.email,
-      Id: users.id,
-      Status: users.status
+      name: user.name,
+      email: user.email,
+      id: user.id,
+      status: user.status
     }
   })
-  res.status(200).json({ cadastrados })
+  res.json({ registered })
 })
 
 module.exports = userRouter
