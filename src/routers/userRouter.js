@@ -35,7 +35,7 @@ userRouter.get('/user', (req, res) => {
       status: user.status
     }
   })
-  res.json({ registered })
+  return res.json({ registered })
 })
 
 module.exports = userRouter
