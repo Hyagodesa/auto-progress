@@ -26,4 +26,11 @@ userRouter.post('/user', (req, res) => {
   return res.status(204).json()
 })
 
+userRouter.get('/user', (req, res) => {
+  const cadastrados = users.map((users) => {
+    return { nome: users.name }
+  })
+  res.status(200).json({ Users: cadastrados })
+})
+
 module.exports = userRouter
