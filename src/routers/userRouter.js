@@ -28,14 +28,20 @@ userRouter.post('/user', (req, res) => {
 
 userRouter.get('/users', (req, res) => {
   const registered = users.map((user) => {
-    return {
-      name: user.name,
-      email: user.email,
-      id: user.id,
-      status: user.status
-    }
+    const { password, ...users } = user
+    return users
   })
   return res.json({ registered })
 })
+
+// userRouter.patch('/user/:id', (req, res) => {
+//   const { id } = req.params
+//   const { name } = req.body
+//   // Verificando ID
+//   const change = users.find((user) => user.id === id)
+//   if (!change) return res.status(400).json('Id inválido')
+//   return res.status(200).json({ id: change })
+//   const {name}= change
+// })
 
 module.exports = userRouter
