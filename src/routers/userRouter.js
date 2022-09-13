@@ -1,6 +1,6 @@
 const express = require('express')
 const validator = require('class-validator')
-const idUtils = require('../shared/utils/idUtility')
+const idUtils = require('../shared/utils/idUtils')
 const dateUtils = require('../shared/utils/dateUtils')
 
 const userRouter = express.Router()
