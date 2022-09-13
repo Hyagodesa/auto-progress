@@ -22,8 +22,22 @@ userRouter.post('/user', (req, res) => {
   const user = users.find((user) => user.email === email)
   if (user) return res.status(400).send('Este email já foi cadastrado.')
 
-  users.push({ name, email, password, id: idUtils.generate(), createdAt: dateUtils.now(), status: true })
+  const id = idUtils.generate()
+  console.log(id)
+  users.push({ name, email, password, id, createdAt: dateUtils.now(), status: true })
   return res.status(204).json()
+})
+
+userRouter.patch('/user/:id', (req, res) => {
+  const { id } = req.params
+  const { name } = req.body
+  const index = users.findIndex((user) => user.id === id)
+  if (index >= 0) {
+    users[index] = { ...users[index], name }
+
+    console.log(users[index])
+  }
+  return res.json()
 })
 
 module.exports = userRouter
