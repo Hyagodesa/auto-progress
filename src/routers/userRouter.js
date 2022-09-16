@@ -27,11 +27,11 @@ userRouter.post('/user', (req, res) => {
 })
 
 userRouter.get('/users', (req, res) => {
-  const registered = users.map((user) => {
-    const { password, ...users } = user
-    return users
+  const userRegistered = users.map((userList) => {
+    const { password, ...user } = userList
+    return user
   })
-  return res.json(registered)
+  return res.json(userRegistered)
 })
 
 module.exports = userRouter
