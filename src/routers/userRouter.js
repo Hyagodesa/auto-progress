@@ -32,19 +32,17 @@ userRouter.patch('/user/:id', (req, res) => {
   const { id } = req.params
   const { name } = req.body
   const isValidID = users.find((user) => user.id === id)
-  const isValidName = users.find((user) => user.name === name)
   const index = users.findIndex((user) => user.id === id)
 
-  if (!isValidID) return res.status(400).send('Insira um ID válido.')
-  if (!name) return res.status(400).send('Insira um nome.')
-  if (isValidName) return res.status(400).send('Insira um nome diferente do atual.')
-  if (!validator.minLength(name, 4)) return res.status(400).send('Insira um nome maior, com pelo menos 4 caracteres.')
-  if (!validator.maxLength(name, 30)) return res.status(400).send('Insira um nome menor, com no máximo 30 caracteres.')
+  if (!isValidID) return res.status(400).json('Usuário não existe.')
+  if (!name) return res.status(400).json('Insira um nome.')
+  if (!validator.minLength(name, 4)) return res.status(400).json('Insira um nome maior, com pelo menos 4 caracteres.')
+  if (!validator.maxLength(name, 30)) return res.status(400).json('Insira um nome menor, com no máximo 30 caracteres.')
 
   if (index >= 0) {
     users[index] = { ...users[index], name }
   }
-  return res.json({ update: name })
+  return res.json(users[index])
 })
 
 module.exports = userRouter
